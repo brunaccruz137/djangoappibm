@@ -63,6 +63,70 @@
 
             -->
 
+            <a href="#demo" class="btn btn-primary" data-toggle="collapse">Exam Content</a>
+                     <form id="questionform" action="{% url 'onlinecourse:submit' %}" method="post">
+                                 What type of language is Python?<br/>
+                                 <input type="checkbox">Interpreted><br/>
+                                 <input type="checkbox">Limited-purpose><br/>
+                                 <input type="checkbox">High-level programming language><br/>
+                                 What are the 3 types of data in Python?<br/>
+                                 <input type="checkbox">Text Type><br/>
+                                 <input type="checkbox">Boolean Type><br/>
+                                 <input type="checkbox">For loop><br/>
+                                 What are the basic built-in functions of Python?<br/>
+                                 <input type="checkbox"> __str__ method><br/>
+                                 <input type="checkbox">sorted( ) function><br/>
+                                 <input type="checkbox">print( ) function><br/>
+                                 How do you write comments in Python?<br/>
+                                 <input type="checkbox">Place your plain text inside /* */ marks><br/>
+                                 <input type="checkbox">Start with two forward slashes ( // )><br/>
+                                 <input type="checkbox">Begin with a hash mark ( # )><br/>
+                                 What are the key features of Python?<br/>
+                                 <input type="checkbox">Free and Open Source><br/>
+                                 <input type="checkbox">Object-Oriented Language><br/>
+                                 <input type="checkbox">Hard to code><br/>
+                                 <div class="card mt-1">
+                                     <div class="card-header"><h5>{{ question.question_text}}</h5></div>
+                                     {% csrf_token %}
+                                     <div class="form-group">
+
+                                         <div class="form-check">
+                                             <label class="form-check-label">
+                                                 <input type="checkbox" name="choice_{{choice.id}}"
+                                                        class="form-check-input" id="{{choice.id}}"
+                                                        value="{{choice.id}}">{{ choice.choice_text }}
+                                             </label>
+                                         </div>
+                                     </div>
+                                 </div>
+                             <input class="btn btn-success btn-block" type="submit" value="Submit">
+                     </form>
+                     <div id="exam" class="collapse">
+                             {% if user.is_authenticated %}
+                             <li>
+                                 <a class="btn btn-link" href="{% url 'onlinecourse:logout' %}">Logout</a>
+                             </li>
+                             {% else %}
+                             <li>
+                             <a class="btn btn-link" href="{% url 'onlinecourse:registration' %}">Sign Up</a>
+                                     </div>
+                                 </form>
+                             </li>
+                             {% endif %}
+                         <input type="text" name="question_{{question_id}}" id="{{question_id}}" ...>
+                         <input type="check" name="choice_{{choice.id}}" id="{{choice.id}}" ...>
+                     </div>
+
+                     <br>
+                         <center><button data-toggle="collapse" data-target="#exam">Examination</button></center>
+                     <br>
+
+
+            <!-- A collapse example here: -->
+            <div id="exam" class="collapse show">
+                Click to expand elements within the collapse div
+            </div>
+
             <!-- <HINT> If user is authenticated, show course exam with a list of question -->
 
             <!-- <HINT> Each example will have many questions -->
@@ -75,14 +139,13 @@
             <input type="check" name="choice_{{choice.id}}" id="{{choice.id}}" ...>
             -->
 
-            <!-- A choice submission form example
+            <!-- A choice submission form example -->
             <form id="questionform" action="point to a submit view" method="post">
                         ... for each question in the course ...
                         <div class="card mt-1">
                             <div class="card-header"><h5>{{ question.question_text}}</h5></div>
                             {% csrf_token %}
                             <div class="form-group">
-                               ... for each choice in the question ...
                                 <div class="form-check">
                                     <label class="form-check-label">
                                         <input type="checkbox" name="choice_{{choice.id}}"
@@ -93,7 +156,7 @@
                             </div>
                         </div>
                     <input class="btn btn-success btn-block" type="submit" value="Submit">
-            </form> -->
+            </form>
 
             <!--Check here to see more details Bootstrap checkbox
              https://www.w3schools.com/bootstrap4/bootstrap_forms_inputs.asp-->
