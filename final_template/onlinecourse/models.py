@@ -105,7 +105,7 @@ class Question(models.Model):
     # Foreign key to lesson
     lesson_id = models.ForeignKey(Lesson, on_delete=models.CASCADE)
     # question text
-    question_text = models.TextField()
+    question_text = models.TextField(null=False, max_length=200)
     # question grade/mark
     grade = models.IntegerField()
 
@@ -130,7 +130,7 @@ class Question(models.Model):
     # Other fields and methods you would like to design
 class Choice(models.Model):
     question_id = models.ForeignKey(Question, on_delete=models.CASCADE)
-    choice_text = models.TextField()
+    choice_text = models.TextField(null=False, max_length=200)
     is_correct = models.BooleanField()
     def __str__(self):
         return self.choice_text
